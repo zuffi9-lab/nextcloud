@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  fn-ofd-reminder:
+    image: ghcr.io/your-org/fn-ofd-reminder:latest
+    container_name: fn-ofd-reminder
+    restart: unless-stopped
+    ports:
+      - "38080:8080"
+    environment:
+      - CONFIG_PATH=/data/config.json
+      - PORT=8080
+      - RUN_ON_START=true
+      - SCHEDULE_CRON=0 8 * * *
+      - FLASK_SECRET=${FLASK_SECRET}
+    volumes:
+      - /mnt/tank/apps/fn-ofd-reminder/data:/data
