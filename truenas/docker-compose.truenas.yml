@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   fn-ofd-reminder:
-    image: ghcr.io/your-org/fn-ofd-reminder:latest
+    image: ghcr.io/<github_org_or_user>/fn-ofd-reminder:latest
     container_name: fn-ofd-reminder
     restart: unless-stopped
     ports:

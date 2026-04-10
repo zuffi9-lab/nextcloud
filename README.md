@@ -76,3 +76,11 @@ python web_ui.py
 - `truenas/README.md`
 
 Подробная инструкция: `truenas/README.md`.
+
+
+## Публикация репозитория для TrueNAS
+
+Добавлен отдельный гайд по публикации на GitHub + автоматической публикации образа в GHCR:
+
+- `PUBLISH_TRUENAS.md`
+- `.github/workflows/publish-ghcr.yml`
