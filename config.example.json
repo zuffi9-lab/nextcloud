@@ -1,0 +1,25 @@
+{
+  "nextcloud": {
+    "base_url": "https://cloud.example.com",
+    "username": "user",
+    "app_password": "app-password",
+    "xlsx_webdav_path": "/remote.php/dav/files/user/Finance/fn_ofd.xlsx",
+    "calendar_url": "https://cloud.example.com/remote.php/dav/calendars/user/finance/"
+  },
+  "telegram": {
+    "bot_token": "123456:ABCDEF",
+    "chat_id": "-1000000000000"
+  },
+  "database": {
+    "path": "state.db"
+  },
+  "columns": {
+    "id": "id",
+    "title": "title",
+    "fn_expiry_date": "fn_expiry_date",
+    "ofd_expiry_date": "ofd_expiry_date"
+  },
+  "event": {
+    "timezone": "Europe/Moscow"
+  }
+}
