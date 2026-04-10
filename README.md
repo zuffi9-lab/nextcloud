@@ -98,6 +98,35 @@ scripts\start-windows.bat
 Дальше заполните настройки Nextcloud/Telegram и нажмите «Запустить сейчас».
 
 
+
+
+### Вариант без Docker Desktop (чистый Python)
+
+Если Docker Desktop использовать нельзя, сервис можно запустить напрямую на Windows.
+
+1) Установите Python 3.11+ (с галкой **Add Python to PATH**).
+2) В PowerShell откройте папку проекта и выполните:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+mkdir data -ErrorAction SilentlyContinue
+if (!(Test-Path data\config.json)) { Copy-Item config.example.json data\config.json }
+$env:CONFIG_PATH = "data\config.json"
+$env:PORT = "8080"
+$env:RUN_ON_START = "true"
+$env:SCHEDULE_CRON = "0 8 * * *"
+python web_ui.py
+```
+
+Или одним bat-скриптом:
+
+```bat
+scripts\start-windows-no-docker.bat
+```
+
 ## Интерфейс настройки
 
 В web UI доступны поля:
