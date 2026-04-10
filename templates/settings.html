@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FN/OFD Reminder Setup</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 24px auto; padding: 0 12px; }
+    input { width: 100%; padding: 8px; margin: 4px 0 12px; }
+    button { padding: 10px 14px; margin-right: 8px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .msg { background: #eef8ee; border: 1px solid #cfe8cf; padding: 8px; margin: 10px 0; }
+    h2 { margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <h1>Настройка FN/OFD напоминаний</h1>
+  <p>Расписание (cron): <b>{{ cron }}</b></p>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="msg">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <form method="post" action="/save">
+    <h2>Nextcloud</h2>
+    <label>Base URL</label><input name="base_url" value="{{ cfg.nextcloud.base_url }}" />
+    <label>Username</label><input name="username" value="{{ cfg.nextcloud.username }}" />
+    <label>App Password</label><input name="app_password" value="{{ cfg.nextcloud.app_password }}" />
+    <label>XLSX WebDAV path</label><input name="xlsx_webdav_path" value="{{ cfg.nextcloud.xlsx_webdav_path }}" />
+    <label>Calendar URL (CalDAV)</label><input name="calendar_url" value="{{ cfg.nextcloud.calendar_url }}" />
+
+    <h2>Telegram</h2>
+    <label>Bot token</label><input name="bot_token" value="{{ cfg.telegram.bot_token }}" />
+    <label>Chat ID</label><input name="chat_id" value="{{ cfg.telegram.chat_id }}" />
+
+    <h2>Database / Columns / TZ</h2>
+    <div class="row">
+      <div>
+        <label>DB path</label><input name="db_path" value="{{ cfg.database.path }}" />
+      </div>
+      <div>
+        <label>Timezone</label><input name="timezone" value="{{ cfg.event.timezone }}" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div><label>Column ID</label><input name="col_id" value="{{ cfg.columns.id }}" /></div>
+      <div><label>Column title</label><input name="col_title" value="{{ cfg.columns.title }}" /></div>
+      <div><label>Column FN date</label><input name="col_fn" value="{{ cfg.columns.fn_expiry_date }}" /></div>
+      <div><label>Column OFD date</label><input name="col_ofd" value="{{ cfg.columns.ofd_expiry_date }}" /></div>
+    </div>
+
+    <button type="submit">Сохранить настройки</button>
+  </form>
+
+  <form method="post" action="/run" style="margin-top: 16px;">
+    <button type="submit">Запустить сейчас</button>
+  </form>
+</body>
+</html>
