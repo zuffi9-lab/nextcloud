@@ -1,3 +1,0 @@
-git add .github/workflows/docker-publish.yml
-git commit -m "Add GHCR publish workflow"
-git push origin main
