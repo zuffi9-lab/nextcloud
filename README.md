@@ -65,3 +65,14 @@ source .venv/bin/activate
 pip install -r requirements.txt
 python web_ui.py
 ```
+
+
+## Вариант для TrueNAS SCALE
+
+Добавлен отдельный набор файлов в `truenas/` для установки через Custom App:
+
+- `truenas/docker-compose.truenas.yml`
+- `truenas/.env.example`
+- `truenas/README.md`
+
+Подробная инструкция: `truenas/README.md`.
