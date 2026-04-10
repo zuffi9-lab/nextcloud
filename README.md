@@ -57,6 +57,47 @@ docker compose up -d --build
 Заполните параметры Nextcloud/Telegram, сохраните и нажмите «Запустить сейчас».
 
 
+
+
+## Установка на Windows (Docker Desktop)
+
+Проверено для Windows 10/11 с Docker Desktop.
+
+### 1) Установите Docker Desktop
+
+- Скачайте и установите Docker Desktop.
+- Включите WSL2 backend (рекомендуется).
+- Проверьте в PowerShell:
+
+```powershell
+docker --version
+docker compose version
+```
+
+### 2) Запуск проекта
+
+В PowerShell (в папке репозитория):
+
+```powershell
+git clone <repo_url>
+cd nextcloud
+mkdir data -ErrorAction SilentlyContinue
+docker compose -f docker-compose.windows.yml up -d --build
+```
+
+Или через bat-скрипт:
+
+```bat
+scripts\start-windows.bat
+```
+
+### 3) Откройте интерфейс
+
+- `http://localhost:8080`
+
+Дальше заполните настройки Nextcloud/Telegram и нажмите «Запустить сейчас».
+
+
 ## Интерфейс настройки
 
 В web UI доступны поля:
